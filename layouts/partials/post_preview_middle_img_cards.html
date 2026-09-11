@@ -13,7 +13,7 @@
                 </p>
             </div>
 
-            {{ with partial "get_image" . }}
+            {{ with partial "get_image.html" . }}
             <img src="{{ ( .Resize " 500x" ).RelPermalink }}" alt="{{ .Title }}" class="img-fluid lazyload">
             {{ end }}
 

@@ -1,6 +1,6 @@
-{{- partial "seo/structured/website" . }}
-{{- partial "seo/structured/organization" . }}
+{{- partial "seo/structured/website.html" . }}
+{{- partial "seo/structured/organization.html" . }}
 {{ if .IsPage }}
-{{- partial "seo/structured/breadcrumb" . }}
-{{- partial "seo/structured/article" . }}
+{{- partial "seo/structured/breadcrumb.html" . }}
+{{- partial "seo/structured/article.html" . }}
 {{ end }}

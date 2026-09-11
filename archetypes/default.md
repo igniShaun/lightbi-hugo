@@ -1,9 +1,11 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
+url: 'InsertPostURL'
 description : "Description goes here..."
 tags: [""]
 image : ""
-draft: true
+draft: false
+featured: false
 ---
 

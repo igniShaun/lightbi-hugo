@@ -1,18 +1,18 @@
 <span class="post-meta">
   <div class="row post-meta text-muted">
     <div class="col-sm-12 col-md-6 px-0">
+      <!-- Hide date
       {{ $lastmodstr := default (i18n "dateFormat") .Site.Params.dateformat | .Lastmod.Format }}
       {{ $datestr := default (i18n "dateFormat") .Site.Params.dateformat | .Date.Format }}
+      -->
   
       {{ if not .Site.Params.hideAuthor }}
-      {{ if .Site.Params.Author.name }}
-      <!-- <img src="{{ "/img/bino-about-small.jpg" }}" class="img-responsive img-25 img-round"
-                    alt="Image of author"> -->
-      {{  .Site.Params.Author.name | safeHTML }} |
-      {{ end }}
+        {{ if .Site.Params.Author.name }}
+          {{  .Site.Params.Author.name | safeHTML }} |
+        {{ end }}
       {{ end }}
   
-      &nbsp; {{ $datestr }}
+      &nbsp; <!-- Hide date {{ $datestr }} -->
     </div>
 
   <div class="col-sm-12 col-md-6 text-sm-start text-md-end px-0">
