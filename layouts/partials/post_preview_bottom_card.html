@@ -1,4 +1,4 @@
-<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6  mb-4">
+<div class="post-card-col col-xl-4 col-lg-4 col-md-6 col-sm-6 mb-4">
     <a href="{{ .Permalink }}">
         <div class="card h-100 single-post-card shadow-effect bg-faded-light border">
             <div class="card-body">
@@ -30,7 +30,9 @@
             </div>
 
             {{ with partial "get_image.html" . }}
-            <img src="{{ ( .Resize " 500x" ).RelPermalink }}" alt="{{ .Title }}"
+            {{ $thumb := .Resize "500x" }}
+            <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}"
+                alt="{{ $.Title }}" loading="lazy" decoding="async"
                 class="card-img-bottom img-fluid lazyload">
             {{ end }}
 

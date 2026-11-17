@@ -8,7 +8,9 @@
           {{.}}
         </div>
       {{ end }}
-      <div class="row">
+      {{/* Masonry + infinite scroll: see assets/js/post-grid.js. data-next is how
+           the script finds the following page; the pager below is the no-JS fallback. */}}
+      <div class="post-grid" data-post-grid{{ with .Paginator.Next }} data-next="{{ .URL }}"{{ end }}>
         {{ range .Paginator.Pages }}
           {{ partial "post_preview_card.html" . }}
         {{ end }}
@@ -17,7 +19,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container" data-post-pager>
  <div class="row font-sans">
    <div class="col-md-12 mt-10">
       <nav aria-label="Page navigation">
@@ -29,4 +31,10 @@
   </div>
 </div>
 
+{{ end }}
+
+{{ define "footer" }}
+{{ with resources.Get "js/post-grid.js" | minify | fingerprint }}
+<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+{{ end }}
 {{ end }}

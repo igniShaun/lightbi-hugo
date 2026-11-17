@@ -1094,6 +1094,53 @@ ul.share li:hover .fab {
   justify-content: center;
 }
 
+/* --- Post grid: masonry + infinite scroll (assets/js/post-grid.js) --- */
+
+/* Same breakpoints the cards' Bootstrap columns used: 1 / 2 / 3 across. */
+.post-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
+}
+
+@media (min-width: 576px) {
+  .post-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 992px) {
+  .post-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* The card partials keep their col-* / mb-4 classes for Bootstrap rows
+   (e.g. related posts); inside the grid, the grid does the sizing. */
+.post-grid > .post-card-col {
+  width: auto;
+  margin: 0 !important;
+}
+
+/* Masonry mode (set by JS): cards sit at their natural height and span
+   however many of these small rows they need. The JS reads both values. */
+.post-grid.is-masonry {
+  grid-auto-rows: 4px;
+  row-gap: 0;
+  align-items: start;
+}
+
+.post-grid.is-masonry .card.h-100 {
+  height: auto !important;
+}
+
+.post-grid-status {
+  min-height: 1px;
+  padding: 1.5rem 0;
+  text-align: center;
+  font-size: 1rem;
+}
+
 .card-flex {
   display: flex;
   flex-flow: column nowrap;
