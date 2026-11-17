@@ -1,15 +1,25 @@
-{{- with .Title | default .Site.Title }}
+{{- $d := partial "seo/link_preview_data.html" . }}
+{{- with $d.title }}
 <meta property="og:title" content="{{ . }}" />
 {{- end }}
-{{- with .Description | default .Params.subtitle | default .Summary }}
+{{- with $d.description }}
 <meta property="og:description" content="{{ . }}">
 {{- end }}
-{{- with .Params.share_img | default .Params.image | default .Site.Params.logo }}
+{{- with $d.image }}
 <meta property="og:image" content="{{ . | absURL }}" />
+{{- /* Dimensions let Facebook and LinkedIn render the image on the first share. */}}
+{{- if not (strings.Contains . "://") }}
+{{- with resources.Get (strings.TrimPrefix "/" .) }}
+{{- if in (slice "jpeg" "png" "gif" "webp") .MediaType.SubType }}
+<meta property="og:image:width" content="{{ .Width }}" />
+<meta property="og:image:height" content="{{ .Height }}" />
+{{- end }}
+{{- end }}
+{{- end }}
 {{- end }}
 {{- with .Site.Params.fb_app_id }}
 <meta property="fb:app_id" content="{{ . }}" />
 {{- end }}
 <meta property="og:url" content="{{ .Permalink | absLangURL }}" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
 <meta property="og:site_name" content="{{ .Site.Title }}" />

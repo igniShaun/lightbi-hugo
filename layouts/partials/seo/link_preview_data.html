@@ -1,0 +1,10 @@
+{{- /*
+  Values shared by the Open Graph (opengraph.html) and Twitter/X (twitter.html) link-preview tags.
+  Image precedence: page share_img, page image, site share_img, site logo.
+*/ -}}
+{{- $image := .Params.share_img | default .Params.image | default site.Params.share_img | default site.Params.logo -}}
+{{- return dict
+  "title" (.Title | default site.Title)
+  "description" (.Description | default .Params.subtitle | default .Summary | default site.Params.description)
+  "image" $image
+-}}

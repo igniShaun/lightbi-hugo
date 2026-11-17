@@ -1,15 +1,15 @@
-{{- with .Title | default .Site.Title }}
+{{- $d := partial "seo/link_preview_data.html" . }}
+  <meta name="twitter:card" content="{{ if $d.image }}summary_large_image{{ else }}summary{{ end }}" />
+{{- with $d.title }}
   <meta name="twitter:title" content="{{ . | truncate 70 }}" />
 {{- end }}
-{{- with .Description | default .Params.subtitle | default .Summary }}
+{{- with $d.description }}
   <meta name="twitter:description" content="{{ . | truncate 200 }}">
 {{- end }}
-{{- with .Params.share_img | default .Params.image | default .Site.Params.logo }}
+{{- with $d.image }}
   <meta name="twitter:image" content="{{ . | absURL }}" />
 {{- end }}
-  <meta name="twitter:card" content="summary" />
 {{- with .Site.Params.Author.twitter }}
   <meta name="twitter:site" content="@{{ . }}" />
   <meta name="twitter:creator" content="@{{ . }}" />
 {{- end }}
-
