@@ -3,50 +3,32 @@
 <div class="intro-header no-img">
 </div>
 
-<div class="container col-sm-12 col-md-6 px-2" role="main">
-  <center><h3>Product management. &nbsp;Innovation. &nbsp;Results.</h3></center>
-  
-  <p>&nbsp;</p>
+<div class="container" role="main">
+  <div class="row">
+    {{ with .Content }}
+    <div class="well">
+      {{.}}
+    </div>
+    {{ end }}
 
-  <img src="/img/author-about.jpg">
 
-  <p>&nbsp;</p>
+    {{ $pag := .Paginate (where site.RegularPages "Type" "in" site.Params.mainSections ) 9 }}
+    {{ range $pag.Pages }}
+    {{ partial "post_preview_card" . }}
+    {{ end }}
 
-  <center><h1><u>Work hard</u></h1></center>
-  <p>I'm a <a href="https://linkedin.com/in/shaunshue/" target="_blank">product management professional creating innovative products, features, and solutions that drive business outcomes</a>. My product superpowers are: 1) Shattering the divide between stakeholders and developers, from having been in both roles. 2) Creating loveable products with my sharp sense for UX and user empathy. 3) Systematically using stakeholder and customer feedback to distill wants into needs, to prioritize and build the right things.</p>
 
-  <p>My <a href="/tags/product">products</a>:</p>
-  <ul>
-    <li>Align morals and investments</li>
-    <li>Dependably manage hundreds-of-millions of dollars worth of purchased software</li>
-    <li>Consistently save 1000+ support desk hours monthly</li>
-    <li>Delight customers by making their jobs easier</li>
-    <li>Streamline an M&A firm's deal flow</li>
-    <li>Reduce hours of labor by 95% for life cast production</li>
-    <li>Bring STEAM education to underserved youth</li>
-  </ul>
+  </div>
 
-  <p>My <a href="/tags/recommendations">testimonials/recommendations</a></p>
-
-  <p>&nbsp;</p>
-  <center><h1><u>Play hard</u></h1></center>
-  <p>I am a solid <a href="/tags/stories/">storyteller</a> and <a href="/Toastmasters">Toastmaster</a>.</p>
-  <p>I enjoy <a href="/tags/builds/">building things</a> with code, electronics, 3D prints, wood, and metal.</p>
-  <p>I promote STEAM education at <a href="/LAMakerFaire">events</a>, and occasionally in classrooms.</p>
-  <p>Until some hip problems and life choices, I was an <a href="/Ultrarunning">ultrarunner</a> and endurance athlete, and I still immensely enjoy the <a href="/Backpacker">outdoors</a>.</p>
-  <p>I am a <a href="/PIDCooking">cooking tech wonk</a>.</p>
-  <p></p>
-
-  <p>&nbsp;</p>
-  <center><h1><u>For more Shaun</u></h1></center>
-  <p>Connect with me on <a href="https://linkedin.com/in/shaunshue" target="_blank">LinkedIn</a>.</p>
-  <p>Here are my <a href="https://www.goodreads.com/ignishaun" target="_blank">book reviews and ratings</a>.</p>
-  <p>Send me an <a href="https://shaunshue.com/Contact/" target="_blank">email</a>.</p>
-  <p>Here's my <a href="https://github.com/ignishaun" target="_blank">GitHub</a>.</p>
-  <p>Here's my <a href="https://linktr.ee/shaunshue" target="_blank">Linktree</a>.</p>
-  <p>Ignore my <a href="https://shaunshue.com/OffFacebook/" target="_blank">Meta accounts (Facebook + Instagram)</a>.</p>
-
-  
+  <div class="row font-sans">
+    <div class="col-md-12 mt-10">
+      <nav aria-label="Page navigation">
+        <div class="pagination justify-content-end">
+          {{ template "_internal/pagination.html" . }}
+        </div>
+      </nav>
+    </div>
+  </div>
 </div>
 
 {{ end }}
